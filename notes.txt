@@ -1,0 +1,222 @@
+Django Rest Framework
+- Routers & Viewsets
+- Token Authentication for Mobile Devices
+- Permissions & permissions per view (On Token)
+
+- Setup
+- Model Serialization are like ModelForm: 
+Model instance into JSON and viceversa
+Can generate fields for the models 
+Generated validators such as uniquetogether validator specified on the model
+- ListCreateCourse(APIView): -> GET/POST methods 
+- CRUD -> Update/Delete (Generics Views intro)
+- Generic views
+
+- Relationships
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Mixins
+1.- Use less code to avoid bugs
+2.- Can create own mixins too
+
+1.- ccbv 
+-> Spend some time looking at hierarchies
+-> CreateView
+-> LoginRequired
+
+2.- Page title mixin
+-> Let set an attribute on a class and that will get out
+on the context because some page title changes
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Franken-Views
+- Same page: Show model detail and edit the model on a form
+- Same page: Create new team when in a ListView
+- Solution: Form into the context (instance)
+	- It's children in the detailView
+- Solution: Extend views to get more custom-views
+
+* 'TeamlListView' object has no attribute 'object'
+
+- Better use Mixins
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Overriding Methods (like get_context_data)
+- Solo los coaches y superuser pueden borrar registros
+- Hacer que al crear un equipo aparesca el usuario logeado como posible coach
+- CBVs inheritance chain: para saber como que metodos están disponibles
+- https://ccbv.co.uk/
+- Queryset override: 
+	- Tener cuidado porque los querysets son mutable (no dict)
+	- LLamar .all() o override el método get_queryset (clona el queryset correctamente)
+
+
+
+
+
+
+
+
+
+
+
+
+
+Well, reverse_lazy works just like reverse does.
+But it gets evaluated whenever the view is instantiated,
+instead of when this file is read and parsed by Python.
+Which means that if the teams ListView doesn't exist yet, or
+the URL rather doesn't exist yet, when the file is read, that doesn't matter.
+reverse_lazy calls it later on, once everything's up and running.
+So cool, good to go there.
+
+
+There are more views like:
+- Displaying records based on a date
+- Handling a non model form
+- Redirecting a user to another url
+
+
+NEXT customization: overriding methods
+
+
+
+
+
+
+
+
+
+
+
+GENERIC VIEWS (ListView & DetailView)
+Records
+- Proveer query set o un modelo
+- Casi para cada modelo que se construya
+- Util para CMS, tiendas ecommerce y mas
+- Generan variables de contexto y tienen nombres predefinidos por se Genericos pero se pueden camiar
+- No es necesario cambiar los nombres de los templates
+
+ListView
+- Genera object_list y context_list
+
+DetailView
+- Trabaja con argumentos url como pk o slug
+
+CRUD: Create, Read, Update & Delete
+
+
+
+
+url name of the detail view
+
+
+
+
+
+
+
+
+
+Generic View (Template view)
+- Cambiar el context data con get_context_data (overide)
+- Genera y obtiene el context dictionary que se usa para generar el template
+- Super obtiene todos los resultados del método hasta el stack
+- Agregar un key al contexto
+
+- Los templates deberían estar dentro de cada app
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+- Turn the class into a function
+- We call the method as view it's a class method
+- It doesn't need an instance of the class to run
+- Creates an instance of the class like request object
+- Runs the dispatch method, in this case get method
+
+- View controls everything but its more useful generic views to solve specific problems
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Django Class-based views
+- View Class & Generic Class Based Views (CRUD operations, forms validation, http redirects)
+- Create new features fast and easy to test only that feature
+
+Index
+- Urls
+- View Class
+- Template View
+- ListView & DetailView
+- CRUD View
+- Overiding methods
+- Franken views
+- Mixin
+- Wrap up
